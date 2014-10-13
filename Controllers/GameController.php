@@ -17,8 +17,8 @@ namespace Modules\Games\Controllers;
 use Mindy\Base\Mindy;
 use Mindy\Pagination\Pagination;
 use Modules\Core\Controllers\CoreController;
+use Modules\Games\GamesModule;
 use Modules\Games\Models\Game;
-use Modules\User\UserModule;
 
 class GameController extends CoreController
 {
@@ -26,9 +26,9 @@ class GameController extends CoreController
     {
         $urlManager = Mindy::app()->urlManager;
         $this->setCanonical($urlManager->reverse('games.index'));
-        $this->addTitle(UserModule::t('Games'));
+        $this->addTitle(GamesModule::t('Games'));
         $this->setBreadcrumbs([
-            ['name' => UserModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
+            ['name' => GamesModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
         ]);
 
         echo $this->render('games/game/index.html');
@@ -45,7 +45,7 @@ class GameController extends CoreController
         $this->setCanonical($model);
         $this->addTitle((string)$model);
         $this->setBreadcrumbs([
-            ['name' => UserModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
+            ['name' => GamesModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
             ['name' => (string)$model, 'url' => $model->getAbsoluteUrl()],
         ]);
 

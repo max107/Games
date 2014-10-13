@@ -18,7 +18,7 @@ use Mindy\Base\Mindy;
 use Mindy\Pagination\Pagination;
 use Modules\Core\Controllers\CoreController;
 use Modules\Games\Models\Genre;
-use Modules\User\UserModule;
+use Modules\Games\GamesModule;
 
 class GenreController extends CoreController
 {
@@ -26,10 +26,10 @@ class GenreController extends CoreController
     {
         $urlManager = Mindy::app()->urlManager;
         $this->setCanonical($urlManager->reverse('games.genre_list'));
-        $this->addTitle(UserModule::t('Genres'));
+        $this->addTitle(GamesModule::t('Genres'));
         $this->setBreadcrumbs([
-            ['name' => UserModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
-            ['name' => UserModule::t('Genres'), 'url' => $urlManager->reverse('games.genre_list')],
+            ['name' => GamesModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
+            ['name' => GamesModule::t('Genres'), 'url' => $urlManager->reverse('games.genre_list')],
         ]);
 
         $qs = Genre::objects();
@@ -49,11 +49,11 @@ class GenreController extends CoreController
 
         $urlManager = Mindy::app()->urlManager;
         $this->setCanonical($model);
-        $this->addTitle(UserModule::t('Genres'));
+        $this->addTitle(GamesModule::t('Genres'));
         $this->addTitle($model);
         $this->setBreadcrumbs([
-            ['name' => UserModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
-            ['name' => UserModule::t('Genres'), 'url' => $urlManager->reverse('games.genre_list')],
+            ['name' => GamesModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
+            ['name' => GamesModule::t('Genres'), 'url' => $urlManager->reverse('games.genre_list')],
             ['name' => (string) $model, 'url' => $model->getAbsoluteUrl()]
         ]);
 

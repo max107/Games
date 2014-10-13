@@ -18,7 +18,7 @@ use Mindy\Base\Mindy;
 use Mindy\Pagination\Pagination;
 use Modules\Core\Controllers\CoreController;
 use Modules\Games\Models\Publisher;
-use Modules\User\UserModule;
+use Modules\Games\GamesModule;
 
 class PublisherController extends CoreController
 {
@@ -26,10 +26,10 @@ class PublisherController extends CoreController
     {
         $urlManager = Mindy::app()->urlManager;
         $this->setCanonical($urlManager->reverse('games.publisher_list'));
-        $this->addTitle(UserModule::t('Publishers'));
+        $this->addTitle(GamesModule::t('Publishers'));
         $this->setBreadcrumbs([
-            ['name' => UserModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
-            ['name' => UserModule::t('Publishers'), 'url' => $urlManager->reverse('games.publisher_list')],
+            ['name' => GamesModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
+            ['name' => GamesModule::t('Publishers'), 'url' => $urlManager->reverse('games.publisher_list')],
         ]);
 
         $qs = Publisher::objects();
@@ -49,11 +49,11 @@ class PublisherController extends CoreController
 
         $urlManager = Mindy::app()->urlManager;
         $this->setCanonical($model);
-        $this->addTitle(UserModule::t('Publishers'));
+        $this->addTitle(GamesModule::t('Publishers'));
         $this->addTitle($model);
         $this->setBreadcrumbs([
-            ['name' => UserModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
-            ['name' => UserModule::t('Publishers'), 'url' => $urlManager->reverse('games.publisher_list')],
+            ['name' => GamesModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
+            ['name' => GamesModule::t('Publishers'), 'url' => $urlManager->reverse('games.publisher_list')],
             ['name' => (string) $model, 'url' => $model->getAbsoluteUrl()]
         ]);
 

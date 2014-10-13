@@ -19,7 +19,7 @@ use Mindy\Pagination\Pagination;
 use Modules\Core\Controllers\CoreController;
 use Modules\Games\Models\Developer;
 use Modules\Games\Models\Game;
-use Modules\User\UserModule;
+use Modules\Games\GamesModule;
 
 class DeveloperController extends CoreController
 {
@@ -27,10 +27,10 @@ class DeveloperController extends CoreController
     {
         $urlManager = Mindy::app()->urlManager;
         $this->setCanonical($urlManager->reverse('games.developer_list'));
-        $this->addTitle(UserModule::t('Developers'));
+        $this->addTitle(GamesModule::t('Developers'));
         $this->setBreadcrumbs([
-            ['name' => UserModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
-            ['name' => UserModule::t('Developers'), 'url' => $urlManager->reverse('games.developer_list')],
+            ['name' => GamesModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
+            ['name' => GamesModule::t('Developers'), 'url' => $urlManager->reverse('games.developer_list')],
         ]);
 
         $qs = Developer::objects();
@@ -50,11 +50,11 @@ class DeveloperController extends CoreController
 
         $urlManager = Mindy::app()->urlManager;
         $this->setCanonical($model);
-        $this->addTitle(UserModule::t('Developers'));
+        $this->addTitle(GamesModule::t('Developers'));
         $this->addTitle($model);
         $this->setBreadcrumbs([
-            ['name' => UserModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
-            ['name' => UserModule::t('Developers'), 'url' => $urlManager->reverse('games.developer_list')],
+            ['name' => GamesModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
+            ['name' => GamesModule::t('Developers'), 'url' => $urlManager->reverse('games.developer_list')],
             ['name' => (string) $model, 'url' => $model->getAbsoluteUrl()]
         ]);
 

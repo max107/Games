@@ -18,7 +18,7 @@ use Mindy\Base\Mindy;
 use Mindy\Pagination\Pagination;
 use Modules\Core\Controllers\CoreController;
 use Modules\Games\Models\Game;
-use Modules\User\UserModule;
+use Modules\Games\GamesModule;
 
 class ScreenshotController extends CoreController
 {
@@ -36,11 +36,11 @@ class ScreenshotController extends CoreController
         $urlManager = Mindy::app()->urlManager;
         $this->setCanonical($urlManager->reverse('games.screenshot_list', ['slug' => $model->slug]));
         $this->addTitle((string)$model);
-        $this->addTitle(UserModule::t('Video'));
+        $this->addTitle(GamesModule::t('Video'));
         $this->setBreadcrumbs([
-            ['name' => UserModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
+            ['name' => GamesModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
             ['name' => (string)$model, 'url' => $model->getAbsoluteUrl()],
-            ['name' => UserModule::t('Screenshots'), 'url' => $urlManager->reverse('games.screenshot_list', ['slug' => $model->slug])],
+            ['name' => GamesModule::t('Screenshots'), 'url' => $urlManager->reverse('games.screenshot_list', ['slug' => $model->slug])],
         ]);
 
         $pager = new Pagination($model->screenshots);

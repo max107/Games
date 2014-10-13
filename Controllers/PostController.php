@@ -19,7 +19,7 @@ use Mindy\Pagination\Pagination;
 use Modules\Core\Controllers\CoreController;
 use Modules\Games\Models\Game;
 use Modules\Games\Models\Post;
-use Modules\User\UserModule;
+use Modules\Games\GamesModule;
 
 class PostController extends CoreController
 {
@@ -45,9 +45,9 @@ class PostController extends CoreController
 
         $urlManager = Mindy::app()->urlManager;
         $breadcrumbs = [
-            ['name' => UserModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
+            ['name' => GamesModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
             ['name' => (string)$model->game, 'url' => $model->game->getAbsoluteUrl()],
-            ['name' => UserModule::t('Blog'), 'url' => $urlManager->reverse('games.post_list', ['slug' => $model->game->slug])],
+            ['name' => GamesModule::t('Blog'), 'url' => $urlManager->reverse('games.post_list', ['slug' => $model->game->slug])],
             ['name' => (string)$model, 'url' => $model->getAbsoluteUrl()]
         ];
         $this->setBreadcrumbs($breadcrumbs);
@@ -73,11 +73,11 @@ class PostController extends CoreController
 
         $this->setCanonical($urlManager->reverse('games.post_list', ['slug' => $model->slug]));
         $this->addTitle((string)$model);
-        $this->addTitle(UserModule::t('Blog'));
+        $this->addTitle(GamesModule::t('Blog'));
         $this->setBreadcrumbs([
-            ['name' => UserModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
+            ['name' => GamesModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
             ['name' => (string)$model, 'url' => $model->getAbsoluteUrl()],
-            ['name' => UserModule::t('Blog'), 'url' => $urlManager->reverse('games.post_list', ['slug' => $model->slug])],
+            ['name' => GamesModule::t('Blog'), 'url' => $urlManager->reverse('games.post_list', ['slug' => $model->slug])],
         ]);
 
         $qs = Post::objects()->published()->filter(['game' => $model])->order(['-published_at']);

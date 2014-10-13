@@ -19,7 +19,7 @@ use Mindy\Pagination\Pagination;
 use Modules\Core\Controllers\CoreController;
 use Modules\Games\Models\Game;
 use Modules\Games\Models\Video;
-use Modules\User\UserModule;
+use Modules\Games\GamesModule;
 
 class VideoController extends CoreController
 {
@@ -37,11 +37,11 @@ class VideoController extends CoreController
         $urlManager = Mindy::app()->urlManager;
         $this->setCanonical($urlManager->reverse('games.video_list', ['slug' => $model->slug]));
         $this->addTitle((string)$model);
-        $this->addTitle(UserModule::t('Video'));
+        $this->addTitle(GamesModule::t('Video'));
         $this->setBreadcrumbs([
-            ['name' => UserModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
+            ['name' => GamesModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
             ['name' => (string)$model, 'url' => $model->getAbsoluteUrl()],
-            ['name' => UserModule::t('Video'), 'url' => $urlManager->reverse('games.video_list', ['slug' => $model->slug])],
+            ['name' => GamesModule::t('Video'), 'url' => $urlManager->reverse('games.video_list', ['slug' => $model->slug])],
         ]);
 
         $pager = new Pagination($model->videos);
@@ -71,12 +71,12 @@ class VideoController extends CoreController
         $urlManager = Mindy::app()->urlManager;
         $this->setCanonical($model);
         $this->addTitle((string)$game);
-        $this->addTitle(UserModule::t('Video'));
+        $this->addTitle(GamesModule::t('Video'));
         $this->addTitle((string)$model);
         $this->setBreadcrumbs([
-            ['name' => UserModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
+            ['name' => GamesModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
             ['name' => (string)$game, 'url' => $game->getAbsoluteUrl()],
-            ['name' => UserModule::t('Video'), 'url' => $urlManager->reverse('games.video_list', ['slug' => $game->slug])],
+            ['name' => GamesModule::t('Video'), 'url' => $urlManager->reverse('games.video_list', ['slug' => $game->slug])],
             ['name' => (string)$model, 'url' => $model->getAbsoluteUrl()]
         ]);
 
