@@ -9,26 +9,25 @@
  * @version 1.0
  * @company Studio107
  * @site http://studio107.ru
- * @date 05/10/14.10.2014 19:44
+ * @date 11/09/14.09.2014 17:51
  */
 
 namespace Modules\Games\Admin;
 
-use Modules\Admin\Components\ModelAdmin;
-use Modules\Games\Models\Game;
+use Modules\Comments\Admin\BaseCommentAdmin;
+use Modules\Games\Models\Comment;
 
-class GameAdmin extends ModelAdmin
+class CommentAdmin extends BaseCommentAdmin
 {
     public function getColumns()
     {
-        return ['name', 'release_date', 'developer', 'publisher'];
+        return ['id', 'username', 'email', 'created_at', 'is_published'];
     }
-
     /**
      * @return \Mindy\Orm\Model
      */
     public function getModel()
     {
-        return new Game;
+        return new Comment;
     }
 }

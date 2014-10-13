@@ -25,6 +25,11 @@ use Mindy\Orm\Fields\TextField;
 use Mindy\Orm\Model;
 use Modules\Games\GamesModule;
 
+/**
+ * Class Page
+ * @package Modules\Pages
+ * @method static \Modules\Pages\Models\PageManager objects($instance = null)
+ */
 class Post extends Model
 {
     public $metaConfig = [
@@ -56,11 +61,10 @@ class Post extends Model
                 'null' => true,
                 'verboseName' => GamesModule::t('Short content')
             ],
-            'category' => [
+            'game' => [
                 'class' => ForeignField::className(),
-                'modelClass' => Category::className(),
-                'relatedName' => 'posts',
-                'null' => true
+                'modelClass' => Game::className(),
+                'verboseName' => GamesModule::t('Game')
             ],
             'created_at' => [
                 'class' => DateTimeField::className(),
@@ -73,11 +77,6 @@ class Post extends Model
             'published_at' => [
                 'class' => DateTimeField::className(),
                 'null' => true
-            ],
-            'view' => [
-                'class' => CharField::className(),
-                'null' => true,
-                'verboseName' => GamesModule::t('View')
             ],
             'is_published' => [
                 'class' => BooleanField::className(),
@@ -104,5 +103,25 @@ class Post extends Model
             ];
         }
         return $fields;
+    }
+
+    public function __toString()
+    {
+        return (string)$this->name;
+    }
+
+    public static function objectsManager($instance = null)
+    {
+        $className = get_called_class();
+        return new PostManager($instance ? $instance : new $className);
+    }
+
+    public function getAbsoluteUrl()
+    {
+        return $this->reverse('games.post_view', [
+            'slug' => $this->game->slug,
+            'pk' => $this->pk,
+            'url' => $this->url
+        ]);
     }
 }

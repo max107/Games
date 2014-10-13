@@ -17,8 +17,10 @@ namespace Modules\Games\Models;
 use Mindy\Orm\Fields\CharField;
 use Mindy\Orm\Fields\DateField;
 use Mindy\Orm\Fields\ForeignField;
+use Mindy\Orm\Fields\HasManyField;
 use Mindy\Orm\Fields\ImageField;
 use Mindy\Orm\Fields\ManyToManyField;
+use Mindy\Orm\Fields\SlugField;
 use Mindy\Orm\Fields\TextField;
 use Mindy\Orm\Model;
 use Modules\Games\GamesModule;
@@ -32,6 +34,11 @@ class Game extends Model
                 'class' => CharField::className(),
                 'verboseName' => GamesModule::t('Name')
             ],
+            'slug' => [
+                'class' => SlugField::className(),
+                'verboseName' => GamesModule::t('Slug'),
+                'unique' => true
+            ],
             'description' => [
                 'class' => TextField::className(),
                 'verboseName' => GamesModule::t('Description')
@@ -39,16 +46,6 @@ class Game extends Model
             'logo' => [
                 'class' => ImageField::className(),
                 'null' => true,
-                'sizes' => [
-                    'thumb' => [
-                        160, 104,
-                        'method' => 'adaptiveResizeFromTop',
-                        'options' => ['jpeg_quality' => 5]
-                    ],
-                    'resize' => [
-                        978
-                    ],
-                ],
                 'verboseName' => GamesModule::t('Logo'),
             ],
             'release_date' => [
@@ -60,7 +57,7 @@ class Game extends Model
                 'verboseName' => GamesModule::t('Website')
             ],
             'platform' => [
-                'class' => ForeignField::className(),
+                'class' => ManyToManyField::className(),
                 'modelClass' => Platform::className(),
                 'verboseName' => GamesModule::t('Platform')
             ],
@@ -79,11 +76,41 @@ class Game extends Model
                 'modelClass' => Genre::className(),
                 'verboseName' => GamesModule::t('Genre')
             ],
+            'patches' => [
+                'class' => HasManyField::className(),
+                'modelClass' => Patch::className(),
+                'verboseName' => GamesModule::t('Patches'),
+            ],
+            'mods' => [
+                'class' => HasManyField::className(),
+                'modelClass' => Mod::className(),
+                'verboseName' => GamesModule::t('Modifications'),
+            ],
+            'screenshots' => [
+                'class' => HasManyField::className(),
+                'modelClass' => Screenshot::className(),
+                'verboseName' => GamesModule::t('Screenshots'),
+            ],
+            'videos' => [
+                'class' => HasManyField::className(),
+                'modelClass' => Video::className(),
+                'verboseName' => GamesModule::t('Videos'),
+            ],
+            'posts' => [
+                'class' => HasManyField::className(),
+                'modelClass' => Post::className(),
+                'verboseName' => GamesModule::t('Posts'),
+            ],
         ];
     }
 
     public function __toString()
     {
         return (string) $this->name;
+    }
+
+    public function getAbsoluteUrl()
+    {
+        return $this->reverse('games.view', ['slug' => $this->slug]);
     }
 }

@@ -14,14 +14,24 @@
 
 namespace Modules\Games\Controllers;
 
+use Mindy\Base\Mindy;
+use Mindy\Pagination\Pagination;
 use Modules\Core\Controllers\CoreController;
 use Modules\Games\Models\Game;
+use Modules\User\UserModule;
 
 class GameController extends CoreController
 {
     public function actionIndex()
     {
-        echo $this->render('games/index.html');
+        $urlManager = Mindy::app()->urlManager;
+        $this->setCanonical($urlManager->reverse('games.index'));
+        $this->addTitle(UserModule::t('Games'));
+        $this->setBreadcrumbs([
+            ['name' => UserModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
+        ]);
+
+        echo $this->render('games/game/index.html');
     }
 
     public function actionView($slug)
@@ -30,8 +40,20 @@ class GameController extends CoreController
         if ($model === null) {
             $this->error(404);
         }
-        echo $this->render('games/view.html', [
-            'model' => $model
+
+        $urlManager = Mindy::app()->urlManager;
+        $this->setCanonical($model);
+        $this->addTitle((string)$model);
+        $this->setBreadcrumbs([
+            ['name' => UserModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
+            ['name' => (string)$model, 'url' => $model->getAbsoluteUrl()],
+        ]);
+
+        $pager = new Pagination($model->posts);
+        echo $this->render('games/game/view.html', [
+            'model' => $model,
+            'pager' => $pager,
+            'posts' => $pager->paginate()
         ]);
     }
 }

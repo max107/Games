@@ -17,6 +17,7 @@ namespace Modules\Games\Models;
 
 use Mindy\Orm\Fields\CharField;
 use Mindy\Orm\Fields\HasManyField;
+use Mindy\Orm\Fields\SlugField;
 use Mindy\Orm\Model;
 use Modules\Games\GamesModule;
 
@@ -29,10 +30,15 @@ class Platform extends Model
                 'class' => CharField::className(),
                 'verboseName' => GamesModule::t('Name')
             ],
+            'slug' => [
+                'class' => SlugField::className(),
+                'unique' => true
+            ],
             'games' => [
                 'class' => HasManyField::className(),
                 'verboseName' => GamesModule::t('Games'),
-                'modelClass' => Game::className()
+                'modelClass' => Game::className(),
+                'editable' => false
             ],
         ];
     }
@@ -40,5 +46,10 @@ class Platform extends Model
     public function __toString()
     {
         return (string) $this->name;
+    }
+
+    public function getAbsoluteUrl()
+    {
+        return $this->reverse('games.platform_view', ['slug' => $this->slug]);
     }
 }

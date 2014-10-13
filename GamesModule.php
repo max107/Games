@@ -42,6 +42,22 @@ class GamesModule extends Module
                 [
                     'name' => self::t('Genres'),
                     'adminClass' => 'GenreAdmin',
+                ],
+                [
+                    'name' => self::t('Posts'),
+                    'adminClass' => 'PostAdmin',
+                ],
+                [
+                    'name' => self::t('Comments'),
+                    'adminClass' => 'CommentAdmin',
+                ],
+                [
+                    'name' => self::t('Screenshot'),
+                    'adminClass' => 'ScreenshotAdmin',
+                ],
+                [
+                    'name' => self::t('Video'),
+                    'adminClass' => 'VideoAdmin',
                 ]
             ]
         ];

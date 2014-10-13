@@ -1,9 +1,9 @@
 <?php
 /**
- * 
+ *
  *
  * All rights reserved.
- * 
+ *
  * @author Falaleev Maxim
  * @email max@studio107.ru
  * @version 1.0
@@ -15,6 +15,9 @@
 namespace Modules\Games\Models;
 
 use Mindy\Orm\Fields\CharField;
+use Mindy\Orm\Fields\HasManyField;
+use Mindy\Orm\Fields\SlugField;
+use Mindy\Orm\Fields\TextField;
 use Mindy\Orm\Model;
 use Modules\Games\GamesModule;
 
@@ -26,12 +29,31 @@ class Developer extends Model
             'name' => [
                 'class' => CharField::className(),
                 'verboseName' => GamesModule::t('Name')
-            ]
+            ],
+            'slug' => [
+                'class' => SlugField::className(),
+                'unique' => true
+            ],
+            'description' => [
+                'class' => TextField::className(),
+                'verboseName' => GamesModule::t('Description'),
+            ],
+            'games' => [
+                'class' => HasManyField::className(),
+                'verboseName' => GamesModule::t('Games'),
+                'modelClass' => Game::className(),
+                'editable' => false
+            ],
         ];
     }
 
     public function __toString()
     {
-        return (string) $this->name;
+        return (string)$this->name;
+    }
+
+    public function getAbsoluteUrl()
+    {
+        return $this->reverse('games.developer_view', ['slug' => $this->slug]);
     }
 }

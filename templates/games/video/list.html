@@ -1,0 +1,16 @@
+{% extends "games/base.html" %}
+
+{% block content %}
+    <h1>{{ t('Video', 'games') }}</h1>
+
+    <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-2">
+        {% for model in models %}
+            <li>
+                <p><a href="{{ model.getAbsoluteUrl() }}">{{ model.name }}</a></p>
+                <div class="flex-video">{{ model.html|safe }}</div>
+            </li>
+        {% endfor %}
+    </ul>
+
+    {{ pager.render()|safe }}
+{% endblock %}

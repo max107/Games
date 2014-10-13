@@ -1,0 +1,17 @@
+{% extends "games/base.html" %}
+
+{% block content %}
+    <h1>{{ t('Screenshots', 'games') }}</h1>
+
+    <ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-4">
+        {% for model in models %}
+            <li>
+                <a class="th" href="{{ model.file.url }}">
+                    <img src="{{ model.file.url_220x125 }}" alt="{{ model }}"/>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    {{ pager.render()|safe }}
+{% endblock %}

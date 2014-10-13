@@ -1,0 +1,11 @@
+{% extends "games/base.html" %}
+
+{% block content %}
+    <h1>{{ model }}</h1>
+
+    <p>{{ model.description }}</p>
+
+    <section class="flex-video">
+        {{ model.html|safe }}
+    </section>
+{% endblock %}

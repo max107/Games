@@ -17,6 +17,7 @@ namespace Modules\Games\Models;
 use Mindy\Orm\Fields\CharField;
 use Mindy\Orm\Fields\FileField;
 use Mindy\Orm\Fields\ForeignField;
+use Mindy\Orm\Fields\HasManyField;
 use Mindy\Orm\Fields\TextField;
 use Mindy\Orm\Model;
 use Modules\Games\GamesModule;
@@ -45,5 +46,18 @@ class Mod extends Model
                 'modelClass' => Game::className()
             ],
         ];
+    }
+
+    public function __toString()
+    {
+        return (string) $this->name;
+    }
+
+    public function getAbsoluteUrl()
+    {
+        return $this->reverse('games.mod_view', [
+            'slug' => $this->game->slug,
+            'pk' => $this->pk
+        ]);
     }
 }

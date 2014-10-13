@@ -1,0 +1,8 @@
+{% extends "games/base.html" %}
+
+{% block content %}
+    <h1>{{ model }}</h1>
+    <article>
+        {{ model.content|safe }}
+    </article>
+{% endblock %}

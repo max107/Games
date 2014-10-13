@@ -1,0 +1,16 @@
+{% extends "games/base.html" %}
+
+{% block content %}
+    <h1>{{ t('Blog', 'games') }}</h1>
+
+    <ul class="no-bullet">
+        {% for model in models %}
+            <li>
+                <h2><a href="{{ model.getAbsoluteUrl() }}">{{ model }}</a></h2>
+                <p>{{ model.content_short }}</p>
+                <p><a class="button" href="{{ model.getAbsoluteUrl() }}">Подробнее...</a></p>
+            </li>
+        {% endfor %}
+    </ul>
+    {{ pager.render()|safe }}
+{% endblock %}
