@@ -1,95 +1,42 @@
 {% extends "games/base.html" %}
 
 {% block content %}
-    <h1>{{ model }}</h1>
-
     <article>
-        {{ model.description }}
+        {{ game.description }}
     </article>
 
     <table class="games-game-detail">
         <tr>
             <th>{{ t('Release date', 'games') }}</th>
-            <td>{{ model.release_date }}</td>
+            <td>{{ game.release_date }}</td>
         </tr>
         <tr>
             <th>{{ t('Website', 'games') }}</th>
-            <td><a href="{{ model.website }}" target="_blank">{{ model.website }}</a></td>
+            <td><a href="{{ game.website }}" target="_blank">{{ game.website }}</a></td>
         </tr>
         <tr>
             <th>{{ t('Platform', 'games') }}</th>
             <td>
-                {% for platform in model.platform %}
+                {% for platform in game.platform %}
                     <a href="{{ platform.getAbsoluteUrl() }}">{{ platform }}</a>
                 {% endfor %}
             </td>
         </tr>
         <tr>
             <th>{{ t('Developer', 'games') }}</th>
-            <td><a href="{{ model.developer.getAbsoluteUrl() }}">{{ model.developer }}</a></td>
+            <td><a href="{{ game.developer.getAbsoluteUrl() }}">{{ game.developer }}</a></td>
         </tr>
         <tr>
             <th>{{ t('Publisher', 'games') }}</th>
-            <td><a href="{{ model.publisher.getAbsoluteUrl() }}">{{ model.publisher }}</a></td>
+            <td><a href="{{ game.publisher.getAbsoluteUrl() }}">{{ game.publisher }}</a></td>
         </tr>
         <tr>
             <th>{{ t('Genre', 'games') }}</th>
             <td>
-                {% for genre in model.genre %}
+                {% for genre in game.genre %}
                     <a href="{{ genre.getAbsoluteUrl() }}">{{ genre }}</a>
                 {% endfor %}
             </td>
         </tr>
     </table>
-
-    {% if model.screenshots | length > 0 %}
-        <h3><a href="{% url 'games.screenshot_list' model.slug %}">{{ t('Screenshots', 'games') }}</a></h3>
-        <ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-4">
-            {% for screenshot in model.screenshots %}
-            <li>
-                <a class="th" href="{{ screenshot.file.url }}">
-                    <img src="{{ screenshot.file.url_220x125 }}" alt="{{ model }}"/>
-                </a>
-            </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-
-    {% if model.videos | length > 0 %}
-        <h2><a href="{% url 'games.video_list' model.slug %}">{{ t('Videos', 'games') }}</a></h2>
-        <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-2">
-            {% for video in model.videos %}
-            <li>
-                <div class="flex-video">{{ video.html|safe }}</div>
-                <p>{{ video.name }}</p>
-            </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-
-    {% if model.mods | length > 0 %}
-        <h3>{{ t('Modifications', 'games') }}</h3>
-        {% for mod in model.mods %}
-            <p><a href="{{ mod.getAbsoluteUrl() }}">{{ mod }}</a></p>
-            <section>{{ mod.description }}</section>
-        {% endfor %}
-    {% endif %}
-
-    {% if model.patches | length > 0 %}
-        <h3>{{ t('Patches', 'games') }}</h3>
-        {% for patch in model.patches %}
-            <p><a href="{{ patch.getAbsoluteUrl() }}">{{ patch }}</a></p>
-            <section>{{ patch.description }}</section>
-        {% endfor %}
-    {% endif %}
-
-    {% if posts | length > 0 %}
-        <h3>{{ t('Blog', 'games') }}</h3>
-        {% for post in posts %}
-            <h4><a href="{{ post.getAbsoluteUrl() }}">{{ post }}</a></h4>
-            <p>{{ post.content_short }}</p>
-        {% endfor %}
-
-        {{ pager.render()|safe }}
-    {% endif %}
 {% endblock %}

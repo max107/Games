@@ -22,9 +22,10 @@ return array(
     'Publisher' => 'Издатель',
     'Genre' => 'Жанр',
     'Patches' => 'Патчи',
-    'Modifications' => 'Модификации (Моды)',
+    'Modifications' => 'Модификации',
     'Screenshots' => 'Скриншоты',
-    'Videos' => 'Видео',
+    'Videos' => 'Видеозаписи',
+    'Video' => 'Видео',
     'Posts' => 'Записи',
     'File' => 'Файл',
     'Game' => 'Игра',
@@ -33,4 +34,10 @@ return array(
     'Enable comments' => 'Включить комментарии',
     'Enable comments form' => 'Включить форму комментариев',
     'Genres' => 'Жанры',
+    'Developers' => 'Разработчики',
+    'Publishers' => 'Издатели',
+    'Blog' => 'Блог',
+    'Reviews' => 'Отзывы',
+    'Forum' => 'Форум',
+    'Chat' => 'Чат'
 );

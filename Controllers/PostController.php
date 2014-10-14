@@ -31,30 +31,30 @@ class PostController extends CoreController
             'url' => $url
         ]);
         $cache = Mindy::app()->cache;
-        if (($model = $cache->get('games_blog_post_' . $url, null)) === null) {
-            $model = $qs->get();
-            if ($model === null) {
+        if (($game = $cache->get('games_blog_post_' . $url, null)) === null) {
+            $game = $qs->get();
+            if ($game === null) {
                 $this->error(404);
             }
         }
 
-        $this->setCanonical($model);
+        $this->setCanonical($game);
 
-        $this->addTitle((string)$model->game);
-        $this->addTitle((string)$model);
+        $this->addTitle((string)$game->game);
+        $this->addTitle((string)$game);
 
         $urlManager = Mindy::app()->urlManager;
         $breadcrumbs = [
             ['name' => GamesModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
-            ['name' => (string)$model->game, 'url' => $model->game->getAbsoluteUrl()],
-            ['name' => GamesModule::t('Blog'), 'url' => $urlManager->reverse('games.post_list', ['slug' => $model->game->slug])],
-            ['name' => (string)$model, 'url' => $model->getAbsoluteUrl()]
+            ['name' => (string)$game->game, 'url' => $game->game->getAbsoluteUrl()],
+            ['name' => GamesModule::t('Blog'), 'url' => $urlManager->reverse('games.post_list', ['slug' => $game->game->slug])],
+            ['name' => (string)$game, 'url' => $game->getAbsoluteUrl()]
         ];
         $this->setBreadcrumbs($breadcrumbs);
 
         echo $this->render('games/blog/view.html', [
-            'model' => $model,
-            'hasComments' => $model->hasField('comments')
+            'game' => $game,
+            'hasComments' => $game->hasField('comments')
         ]);
     }
 
@@ -62,27 +62,28 @@ class PostController extends CoreController
     {
         $qs = Game::objects()->filter(['slug' => $slug]);
         $cache = Mindy::app()->cache;
-        if (($model = $cache->get('games_game_' . $slug, null)) === null) {
-            $model = $qs->get();
-            if ($model === null) {
+        if (($game = $cache->get('games_game_' . $slug, null)) === null) {
+            $game = $qs->get();
+            if ($game === null) {
                 $this->error(404);
             }
         }
 
         $urlManager = Mindy::app()->urlManager;
 
-        $this->setCanonical($urlManager->reverse('games.post_list', ['slug' => $model->slug]));
-        $this->addTitle((string)$model);
+        $this->setCanonical($urlManager->reverse('games.post_list', ['slug' => $game->slug]));
+        $this->addTitle((string)$game);
         $this->addTitle(GamesModule::t('Blog'));
         $this->setBreadcrumbs([
             ['name' => GamesModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
-            ['name' => (string)$model, 'url' => $model->getAbsoluteUrl()],
-            ['name' => GamesModule::t('Blog'), 'url' => $urlManager->reverse('games.post_list', ['slug' => $model->slug])],
+            ['name' => (string)$game, 'url' => $game->getAbsoluteUrl()],
+            ['name' => GamesModule::t('Blog'), 'url' => $urlManager->reverse('games.post_list', ['slug' => $game->slug])],
         ]);
 
-        $qs = Post::objects()->published()->filter(['game' => $model])->order(['-published_at']);
+        $qs = Post::objects()->published()->filter(['game' => $game])->order(['-published_at']);
         $pager = new Pagination($qs);
         echo $this->render('games/blog/index.html', [
+            'game' => $game,
             'models' => $pager->paginate(),
             'pager' => $pager
         ]);

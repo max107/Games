@@ -66,11 +66,11 @@ return [
     ],
 
     'game/{slug:[A-Za-z0-9-]+}/mods' => [
-        'name' => 'patch_list',
+        'name' => 'mod_list',
         'callback' => '\Modules\Games\Controllers\ModController:index'
     ],
     'game/{slug:[A-Za-z0-9-]+}/mods/{pk:\d+}' => [
-        'name' => 'patch_view',
+        'name' => 'mod_view',
         'callback' => '\Modules\Games\Controllers\ModController:view'
     ],
 

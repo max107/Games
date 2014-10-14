@@ -19,9 +19,9 @@ use Mindy\Pagination\Pagination;
 use Modules\Core\Controllers\CoreController;
 use Modules\Games\GamesModule;
 use Modules\Games\Models\Game;
-use Modules\Games\Models\Patch;
+use Modules\Games\Models\Mod;
 
-class PatchController extends CoreController
+class ModController extends CoreController
 {
     public function actionIndex($slug)
     {
@@ -35,18 +35,18 @@ class PatchController extends CoreController
         }
 
         $urlManager = Mindy::app()->urlManager;
-        $this->setCanonical($urlManager->reverse('games.patch_list', ['slug' => $game->slug]));
-        $this->addTitle($game);
-        $this->addTitle(GamesModule::t('Patches'));
+        $this->setCanonical($urlManager->reverse('games.mod_list', ['slug' => $game->slug]));
+        $this->addTitle((string)$game);
+        $this->addTitle(GamesModule::t('Modifications'));
         $this->setBreadcrumbs([
             ['name' => GamesModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
             ['name' => (string)$game, 'url' => $game->getAbsoluteUrl()],
-            ['name' => GamesModule::t('Patches'), 'url' => $urlManager->reverse('games.patch_list', ['slug' => $game->slug])],
+            ['name' => GamesModule::t('Modifications'), 'url' => $urlManager->reverse('games.mod_list', ['slug' => $game->slug])],
         ]);
 
-        $qs = Patch::objects()->filter(['game' => $game]);
+        $qs = Mod::objects()->filter(['game' => $game]);
         $pager = new Pagination($qs);
-        echo $this->render('games/patch/list.html', [
+        echo $this->render('games/mod/list.html', [
             'pager' => $pager,
             'models' => $pager->paginate(),
             'game' => $game
@@ -64,24 +64,25 @@ class PatchController extends CoreController
             }
         }
 
-        $model = Patch::objects()->filter(['game' => $game, 'pk' => $pk])->get();
+        $model = Mod::objects()->filter(['pk' => $pk])->get();
         if ($model === null) {
             $this->error(404);
         }
 
         $urlManager = Mindy::app()->urlManager;
-        $this->setCanonical($urlManager->reverse('games.patch_list', ['slug' => $game->slug]));
+        $this->setCanonical($urlManager->reverse('games.mod_list', ['slug' => $game->slug]));
         $this->addTitle($game);
-        $this->addTitle(GamesModule::t('Patches'));
+        $this->addTitle(GamesModule::t('Modifications'));
         $this->addTitle($model);
         $this->setBreadcrumbs([
             ['name' => GamesModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
             ['name' => (string)$game, 'url' => $game->getAbsoluteUrl()],
-            ['name' => GamesModule::t('Patches'), 'url' => $urlManager->reverse('games.patch_list', ['slug' => $game->slug])],
+            ['name' => GamesModule::t('Modifications'), 'url' => $urlManager->reverse('games.mod_list', ['slug' => $game->slug])],
             ['name' => (string)$model, 'url' => $model->getAbsoluteUrl()]
         ]);
 
-        echo $this->render("games/patch/view.html", [
+        echo $this->render("games/mod/view.html", [
+            'game' => $game,
             'model' => $model
         ]);
     }

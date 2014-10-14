@@ -1,3 +1,26 @@
 {% extends "base.html" %}
 
-{% block controller %}gamesListController{% endblock %}
+{#{% block controller %}gamesListController{% endblock %}#}
+
+{% block content_before %}
+    <h1>{{ game }}</h1>
+
+    {% url 'games.view' game.slug as game_url %}
+    {% url 'games.screenshot_list' game.slug as screenshot_url %}
+    {% url 'games.video_list' game.slug as video_url %}
+    {% url 'games.post_list' game.slug as blog_url %}
+    {% url 'games.mod_list' game.slug as mod_url %}
+    {% url 'games.patch_list' game.slug as patch_url %}
+
+    <dl class="tabs">
+        <dd{% if game_url in request.path %} class="active"{% endif %}><a href="{{ game_url }}">{{ t('Main', 'games') }}</a></dd>
+        <dd{% if screenshot_url in request.path %} class="active"{% endif %}><a href="{{ screenshot_url }}">{{ t('Screenshots', 'games') }}</a></dd>
+        <dd{% if video_url in request.path %} class="active"{% endif %}><a href="{{ video_url }}">{{ t('Video', 'games') }}</a></dd>
+        <dd{% if blog_url in request.path %} class="active"{% endif %}><a href="{{ blog_url }}">{{ t('Blog', 'games') }}</a></dd>
+        <dd{% if mod_url in request.path %} class="active"{% endif %}><a href="{{ mod_url }}">{{ t('Modifications', 'games') }}</a></dd>
+        <dd{% if patch_url in request.path %} class="active"{% endif %}><a href="{{ patch_url }}">{{ t('Patches', 'games') }}</a></dd>
+        <dd><span>{{ t('Forum', 'games') }}</span></dd>
+        <dd><span>{{ t('Chat', 'games') }}</span></dd>
+        <dd><span>{{ t('Reviews', 'games') }}</span></dd>
+    </dl>
+{% endblock %}

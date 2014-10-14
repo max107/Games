@@ -36,22 +36,22 @@ class GameController extends CoreController
 
     public function actionView($slug)
     {
-        $model = Game::objects()->filter(['slug' => $slug])->get();
-        if ($model === null) {
+        $game = Game::objects()->filter(['slug' => $slug])->get();
+        if ($game === null) {
             $this->error(404);
         }
 
         $urlManager = Mindy::app()->urlManager;
-        $this->setCanonical($model);
-        $this->addTitle((string)$model);
+        $this->setCanonical($game);
+        $this->addTitle((string)$game);
         $this->setBreadcrumbs([
             ['name' => GamesModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
-            ['name' => (string)$model, 'url' => $model->getAbsoluteUrl()],
+            ['name' => (string)$game, 'url' => $game->getAbsoluteUrl()],
         ]);
 
-        $pager = new Pagination($model->posts);
+        $pager = new Pagination($game->posts);
         echo $this->render('games/game/view.html', [
-            'model' => $model,
+            'game' => $game,
             'pager' => $pager,
             'posts' => $pager->paginate()
         ]);
