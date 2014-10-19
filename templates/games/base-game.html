@@ -19,8 +19,5 @@
         <dd{% if blog_url in request.path %} class="active"{% endif %}><a href="{{ blog_url }}">{{ t('Blog', 'games') }}</a></dd>
         <dd{% if mod_url in request.path %} class="active"{% endif %}><a href="{{ mod_url }}">{{ t('Modifications', 'games') }}</a></dd>
         <dd{% if patch_url in request.path %} class="active"{% endif %}><a href="{{ patch_url }}">{{ t('Patches', 'games') }}</a></dd>
-        <dd><span>{{ t('Forum', 'games') }}</span></dd>
-        <dd><span>{{ t('Chat', 'games') }}</span></dd>
-        <dd><span>{{ t('Reviews', 'games') }}</span></dd>
     </dl>
 {% endblock %}

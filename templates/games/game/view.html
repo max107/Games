@@ -1,42 +1,77 @@
 {% extends "games/base-game.html" %}
 
 {% block content %}
-    <article>
-        {{ game.description }}
-    </article>
+    <div class="game-container">
+        <div class="row">
+            <div class="columns large-4 game-image">
+                <a href="{{ game.logo.url }}">
+                    <img class="th" src="{{ game.logo.url_303x225 }}" alt="{{ game }}"/>
+                </a>
+            </div>
+            <div class="columns large-8 game-detail">
+                {{ game.description }}
+            </div>
+        </div>
 
-    <table class="games-game-detail">
-        <tr>
-            <th>{{ t('Release date', 'games') }}</th>
-            <td>{{ game.release_date }}</td>
-        </tr>
-        <tr>
-            <th>{{ t('Website', 'games') }}</th>
-            <td><a href="{{ game.website }}" target="_blank">{{ game.website }}</a></td>
-        </tr>
-        <tr>
-            <th>{{ t('Platform', 'games') }}</th>
-            <td>
-                {% for platform in game.platform %}
-                    <a href="{{ platform.getAbsoluteUrl() }}">{{ platform }}</a>
+        <table class="games-game-detail">
+            <tr>
+                <th>{{ t('Release date', 'games') }}</th>
+                <td>{{ game.release_date }}</td>
+            </tr>
+            <tr>
+                <th>{{ t('Website', 'games') }}</th>
+                <td><a href="{{ game.website }}" target="_blank">{{ game.website }}</a></td>
+            </tr>
+            <tr>
+                <th>{{ t('Platform', 'games') }}</th>
+                <td>
+                    {% for platform in game.platform %}
+                        <a href="{{ platform.getAbsoluteUrl() }}">{{ platform }}</a>
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <th>{{ t('Developer', 'games') }}</th>
+                <td><a href="{{ game.developer.getAbsoluteUrl() }}">{{ game.developer }}</a></td>
+            </tr>
+            <tr>
+                <th>{{ t('Publisher', 'games') }}</th>
+                <td><a href="{{ game.publisher.getAbsoluteUrl() }}">{{ game.publisher }}</a></td>
+            </tr>
+            <tr>
+                <th>{{ t('Genre', 'games') }}</th>
+                <td>
+                    {% for genre in game.genre %}
+                        <a href="{{ genre.getAbsoluteUrl() }}">{{ genre }}</a>
+                    {% endfor %}
+                </td>
+            </tr>
+        </table>
+
+        {% if screenshots.count() > 0 %}
+            <h3>{{ t('Screenshots', 'games') }}</h3>
+
+            <ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-4">
+                {% for screenshot in screenshots %}
+                    <li>
+                        <a class="th" href="{{ screenshot.file.url }}">
+                            <img src="{{ screenshot.file.url_220x125 }}" alt="{{ screenshot }}"/>
+                        </a>
+                    </li>
                 {% endfor %}
-            </td>
-        </tr>
-        <tr>
-            <th>{{ t('Developer', 'games') }}</th>
-            <td><a href="{{ game.developer.getAbsoluteUrl() }}">{{ game.developer }}</a></td>
-        </tr>
-        <tr>
-            <th>{{ t('Publisher', 'games') }}</th>
-            <td><a href="{{ game.publisher.getAbsoluteUrl() }}">{{ game.publisher }}</a></td>
-        </tr>
-        <tr>
-            <th>{{ t('Genre', 'games') }}</th>
-            <td>
-                {% for genre in game.genre %}
-                    <a href="{{ genre.getAbsoluteUrl() }}">{{ genre }}</a>
-                {% endfor %}
-            </td>
-        </tr>
-    </table>
+            </ul>
+        {% endif %}
+
+        {% if videos.count() > 0 %}
+        <h3>{{ t('Videos', 'games') }}</h3>
+        <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3">
+            {% for video in videos %}
+                <li>
+                    <p><a href="{{ video.getAbsoluteUrl() }}">{{ video.name }}</a></p>
+                    <div class="flex-video">{{ video.html|safe }}</div>
+                </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
 {% endblock %}

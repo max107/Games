@@ -31,7 +31,10 @@ class GameController extends CoreController
             ['name' => GamesModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
         ]);
 
-        echo $this->render('games/game/index.html');
+        $qs = Game::objects()->order(['-created_at'])->limit(12)->offset(0);
+        echo $this->render('games/game/index.html', [
+            'models' => $qs->all()
+        ]);
     }
 
     public function actionView($slug)
@@ -49,11 +52,10 @@ class GameController extends CoreController
             ['name' => (string)$game, 'url' => $game->getAbsoluteUrl()],
         ]);
 
-        $pager = new Pagination($game->posts);
         echo $this->render('games/game/view.html', [
             'game' => $game,
-            'pager' => $pager,
-            'posts' => $pager->paginate()
+            'videos' => $game->videos->limit(4)->offset(0),
+            'screenshots' => $game->screenshots->limit(4)->offset(0)
         ]);
     }
 }

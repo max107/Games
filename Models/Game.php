@@ -16,6 +16,7 @@ namespace Modules\Games\Models;
 
 use Mindy\Orm\Fields\CharField;
 use Mindy\Orm\Fields\DateField;
+use Mindy\Orm\Fields\DateTimeField;
 use Mindy\Orm\Fields\ForeignField;
 use Mindy\Orm\Fields\HasManyField;
 use Mindy\Orm\Fields\ImageField;
@@ -100,6 +101,16 @@ class Game extends Model
                 'class' => HasManyField::className(),
                 'modelClass' => Post::className(),
                 'verboseName' => GamesModule::t('Posts'),
+            ],
+            'created_at' => [
+                'class' => DateTimeField::className(),
+                'autoNowAdd' => true,
+                'editable' => false
+            ],
+            'updated_at' => [
+                'class' => DateTimeField::className(),
+                'autoNow' => true,
+                'editable' => false
             ],
         ];
     }

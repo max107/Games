@@ -40,4 +40,5 @@ return array (
   'Reviews' => 'Отзывы',
   'Forum' => 'Форум',
   'Chat' => 'Чат',
+  'New games' => 'Новые игры',
 );
