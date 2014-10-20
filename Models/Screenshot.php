@@ -42,7 +42,8 @@ class Screenshot extends Model
             'game' => [
                 'class' => ForeignField::className(),
                 'verboseName' => GamesModule::t('Game'),
-                'modelClass' => Game::className()
+                'modelClass' => Game::className(),
+                'editable' => false
             ],
         ];
     }

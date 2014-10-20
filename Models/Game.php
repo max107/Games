@@ -81,26 +81,31 @@ class Game extends Model
                 'class' => HasManyField::className(),
                 'modelClass' => Patch::className(),
                 'verboseName' => GamesModule::t('Patches'),
+                'editable' => false
             ],
             'mods' => [
                 'class' => HasManyField::className(),
                 'modelClass' => Mod::className(),
                 'verboseName' => GamesModule::t('Modifications'),
+                'editable' => false
             ],
             'screenshots' => [
                 'class' => HasManyField::className(),
                 'modelClass' => Screenshot::className(),
                 'verboseName' => GamesModule::t('Screenshots'),
+                'editable' => false
             ],
             'videos' => [
                 'class' => HasManyField::className(),
                 'modelClass' => Video::className(),
                 'verboseName' => GamesModule::t('Videos'),
+                'editable' => false
             ],
             'posts' => [
                 'class' => HasManyField::className(),
                 'modelClass' => Post::className(),
                 'verboseName' => GamesModule::t('Posts'),
+                'editable' => false
             ],
             'created_at' => [
                 'class' => DateTimeField::className(),

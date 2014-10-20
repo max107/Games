@@ -41,4 +41,6 @@ return array (
   'Forum' => 'Форум',
   'Chat' => 'Чат',
   'New games' => 'Новые игры',
+  'Platforms' => 'Платформы',
+  'Comments' => 'Комментарии',
 );

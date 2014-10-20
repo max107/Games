@@ -52,12 +52,20 @@ class GamesModule extends Module
                     'adminClass' => 'CommentAdmin',
                 ],
                 [
-                    'name' => self::t('Screenshot'),
+                    'name' => self::t('Screenshots'),
                     'adminClass' => 'ScreenshotAdmin',
                 ],
                 [
-                    'name' => self::t('Video'),
+                    'name' => self::t('Videos'),
                     'adminClass' => 'VideoAdmin',
+                ],
+                [
+                    'name' => self::t('Patches'),
+                    'adminClass' => 'PatchAdmin',
+                ],
+                [
+                    'name' => self::t('Modifications'),
+                    'adminClass' => 'ModAdmin',
                 ]
             ]
         ];

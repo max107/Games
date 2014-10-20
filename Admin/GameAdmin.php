@@ -15,6 +15,7 @@
 namespace Modules\Games\Admin;
 
 use Modules\Admin\Components\ModelAdmin;
+use Modules\Games\Forms\GameAdminForm;
 use Modules\Games\Models\Game;
 
 class GameAdmin extends ModelAdmin
@@ -22,6 +23,14 @@ class GameAdmin extends ModelAdmin
     public function getColumns()
     {
         return ['name', 'release_date', 'developer', 'publisher'];
+    }
+
+    /**
+     * @return string
+     */
+    public function getCreateForm()
+    {
+        return GameAdminForm::className();
     }
 
     /**
