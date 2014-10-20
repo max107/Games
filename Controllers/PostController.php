@@ -25,35 +25,45 @@ class PostController extends CoreController
 {
     public function actionView($slug, $pk, $url)
     {
-        $qs = Post::objects()->published()->filter([
-            'game__slug' => $slug,
-            'pk' => $pk,
-            'url' => $url
-        ]);
+        $gameQs = Game::objects()->filter(['slug' => $slug]);
         $cache = Mindy::app()->cache;
-        if (($game = $cache->get('games_blog_post_' . $url, null)) === null) {
-            $game = $qs->get();
+        if (($game = $cache->get('games_game_' . $slug, null)) === null) {
+            $game = $gameQs->get();
             if ($game === null) {
                 $this->error(404);
             }
         }
+        
+        $qs = Post::objects()->published()->filter([
+            'game' => $game,
+            'pk' => $pk,
+            'url' => $url
+        ]);
+        $cache = Mindy::app()->cache;
+        if (($model = $cache->get('games_blog_post_' . $url, null)) === null) {
+            $model = $qs->get();
+            if ($model === null) {
+                $this->error(404);
+            }
+        }
 
-        $this->setCanonical($game);
+        $this->setCanonical($model);
 
-        $this->addTitle((string)$game->game);
         $this->addTitle((string)$game);
+        $this->addTitle((string)$model);
 
         $urlManager = Mindy::app()->urlManager;
         $breadcrumbs = [
             ['name' => GamesModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
-            ['name' => (string)$game->game, 'url' => $game->game->getAbsoluteUrl()],
-            ['name' => GamesModule::t('Blog'), 'url' => $urlManager->reverse('games.post_list', ['slug' => $game->game->slug])],
-            ['name' => (string)$game, 'url' => $game->getAbsoluteUrl()]
+            ['name' => (string)$game, 'url' => $game->getAbsoluteUrl()],
+            ['name' => GamesModule::t('Blog'), 'url' => $urlManager->reverse('games.post_list', ['slug' => $game->slug])],
+            ['name' => (string)$model, 'url' => $model->getAbsoluteUrl()]
         ];
         $this->setBreadcrumbs($breadcrumbs);
 
         echo $this->render('games/blog/view.html', [
             'game' => $game,
+            'model' => $model,
             'hasComments' => $game->hasField('comments')
         ]);
     }
