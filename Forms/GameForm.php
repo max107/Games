@@ -16,11 +16,20 @@ namespace Modules\Games\Forms;
 
 use Mindy\Form\ModelForm;
 use Modules\Games\Models\Game;
+use Modules\Meta\Forms\MetaInlineForm;
 
 class GameForm extends ModelForm
 {
     public function getModel()
     {
         return new Game;
+    }
+
+    public function getInlines()
+    {
+        return [
+            ['meta' => MetaInlineForm::className()],
+            ['game' => VideoInlineForm::className()]
+        ];
     }
 }

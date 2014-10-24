@@ -14,10 +14,10 @@
 
 namespace Modules\Games\Forms;
 
-use Mindy\Form\InlineModelForm;
+use Mindy\Form\ModelForm;
 use Modules\Games\Models\Video;
 
-class VideoInlineForm extends InlineModelForm
+class VideoInlineForm extends ModelForm
 {
     public function getModel()
     {

@@ -8,6 +8,7 @@ use Mindy\Form\ModelForm;
 use Modules\Core\Fields\Form\TimeStampField;
 use Modules\Games\GamesModule;
 use Modules\Games\Models\Post;
+use Modules\Meta\Forms\MetaInlineForm;
 
 /**
  * Class PostForm
@@ -53,6 +54,13 @@ class PostForm extends ModelForm
             ],
         ];
 
+    }
+
+    public function getInlines()
+    {
+        return [
+            'meta' => MetaInlineForm::className()
+        ];
     }
 
     public function getModel()
