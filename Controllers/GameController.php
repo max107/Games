@@ -19,6 +19,7 @@ use Mindy\Pagination\Pagination;
 use Modules\Core\Controllers\CoreController;
 use Modules\Games\GamesModule;
 use Modules\Games\Models\Game;
+use Modules\Games\Models\Post;
 
 class GameController extends CoreController
 {
@@ -31,9 +32,14 @@ class GameController extends CoreController
             ['name' => GamesModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
         ]);
 
+        $qs = Post::objects()->published();
+        $postsPager = new Pagination($qs);
+
         $qs = Game::objects()->order(['-created_at'])->limit(12)->offset(0);
         echo $this->render('games/game/index.html', [
-            'models' => $qs->all()
+            'models' => $qs->all(),
+            'posts' => $postsPager->paginate(),
+            'postsPager' => $postsPager
         ]);
     }
 

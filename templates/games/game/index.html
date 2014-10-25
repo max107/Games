@@ -18,4 +18,16 @@
         </li>
     {% endfor %}
     </ul>
+
+    <h2>{{ t('Last blog posts', 'games') }}</h2>
+
+    <ul class="no-bullet">
+    {% for post in posts %}
+        <li>
+            <a href="{{ post.getAbsoluteUrl() }}">{{ post }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+
+    {{ postsPager.render()|safe }}
 {% endblock %}
