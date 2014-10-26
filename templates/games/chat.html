@@ -14,8 +14,7 @@
     <script type="text/javascript">
         $(function() {
             $("#msg").webchat({
-                username: {% if user.isGuest %}null{% else %}'{{ user.username }}'{% endif %},
-                socketUrl: 'ws://127.0.0.1:8082'
+                username: {% if user.isGuest %}null{% else %}'{{ user.username }}'{% endif %}
             });
         });
     </script>
