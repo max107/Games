@@ -12,7 +12,7 @@
     {% for model in models %}
         <li>
             <a href="{{ model.getAbsoluteUrl() }}">
-                <img class="th" src="{{ model.logo.url_228x147 }}" alt="{{ model }}"/><br/>
+                <img class="th" src="{% if model.logo.value %}{{ model.logo.url_228x147 }}{% else %}http://placehold.it/228x147{% endif %}" alt="{{ model }}"/><br/>
                 <span>{{ model }}</span>
             </a>
         </li>
