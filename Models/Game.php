@@ -55,7 +55,8 @@ class Game extends Model
             ],
             'website' => [
                 'class' => CharField::className(),
-                'verboseName' => GamesModule::t('Website')
+                'verboseName' => GamesModule::t('Website'),
+                'null' => true
             ],
             'platform' => [
                 'class' => ManyToManyField::className(),
