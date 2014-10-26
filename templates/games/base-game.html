@@ -13,7 +13,7 @@
     {% url 'games.patch_list' game.slug as patch_url %}
 
     <dl class="tabs">
-        <dd{% if game_url == request.path %} class="active"{% endif %}><a href="{{ game_url }}">{{ t('Main', 'games') }}</a></dd>
+        <dd{% if game_url == request.path %} class="active"{% endif %}><a href="{{ game_url }}">{{ t('Information', 'games') }}</a></dd>
         <dd{% if screenshot_url in request.path %} class="active"{% endif %}><a href="{{ screenshot_url }}">{{ t('Screenshots', 'games') }}</a></dd>
         <dd{% if video_url in request.path %} class="active"{% endif %}><a href="{{ video_url }}">{{ t('Video', 'games') }}</a></dd>
         <dd{% if blog_url in request.path %} class="active"{% endif %}><a href="{{ blog_url }}">{{ t('Blog', 'games') }}</a></dd>

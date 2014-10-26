@@ -43,6 +43,7 @@ return array (
   'New games' => 'Новые игры',
   'Platforms' => 'Платформы',
   'Comments' => 'Комментарии',
+  'Information' => 'Информация',
   'Last blog posts' => 'Последние записи в блоге',
   'Send' => 'Отправить',
   'Message...' => 'Сообщение...'
