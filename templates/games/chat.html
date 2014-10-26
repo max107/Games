@@ -11,4 +11,12 @@
             <input type="submit" value="{{ t('Send', 'games') }}" class="button" />
         </form>
     </div>
+    <script type="text/javascript">
+        $(function() {
+            $("#msg").webchat({
+                username: {% if user.isGuest %}null{% else %}'{{ user.username }}'{% endif %},
+                socketUrl: 'ws://127.0.0.1:8082'
+            });
+        });
+    </script>
 {% endblock %}
