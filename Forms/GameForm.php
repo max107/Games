@@ -29,7 +29,6 @@ class GameForm extends ModelForm
     {
         return [
             ['meta' => MetaInlineForm::className()],
-            ['game' => VideoInlineForm::className()]
         ];
     }
 }

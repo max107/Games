@@ -17,7 +17,7 @@ namespace Modules\Games\Forms;
 use Mindy\Form\ModelForm;
 use Modules\Games\Models\Video;
 
-class VideoInlineForm extends ModelForm
+class VideoForm extends ModelForm
 {
     public function getModel()
     {

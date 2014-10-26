@@ -14,6 +14,7 @@
 
 namespace Modules\Games\Admin;
 
+use Modules\Games\Forms\VideoForm;
 use Modules\Games\Models\Video;
 use Modules\Video\Admin\VideoAdmin as VideoBaseAdmin;
 
@@ -25,5 +26,10 @@ class VideoAdmin extends VideoBaseAdmin
     public function getModel()
     {
         return new Video;
+    }
+
+    public function getCreateForm()
+    {
+        return VideoForm::className();
     }
 }
