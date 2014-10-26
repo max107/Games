@@ -4,9 +4,13 @@
     <div class="game-container">
         <div class="row">
             <div class="columns large-4 game-image">
-                <a href="{{ game.logo.url }}">
-                    <img class="th" src="{{ game.logo.url_303x225 }}" alt="{{ game }}"/>
-                </a>
+                {% if game.logo.value %}
+                    <a href="{{ game.logo.url }}">
+                        <img class="th" src="{{ game.logo.url_303x225 }}" alt="{{ game }}"/>
+                    </a>
+                {% else %}
+                    <img class="th" src="http://placehold.it/303x225" alt="{{ game }}"/>
+                {% endif %}
             </div>
             <div class="columns large-8 game-detail">
                 {{ game.description }}
