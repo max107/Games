@@ -65,12 +65,14 @@ class Game extends Model
             'developer' => [
                 'class' => ForeignField::className(),
                 'modelClass' => Developer::className(),
-                'verboseName' => GamesModule::t('Developer')
+                'verboseName' => GamesModule::t('Developer'),
+                'null' => true
             ],
             'publisher' => [
                 'class' => ForeignField::className(),
                 'modelClass' => Publisher::className(),
-                'verboseName' => GamesModule::t('Publisher')
+                'verboseName' => GamesModule::t('Publisher'),
+                'null' => true
             ],
             'genre' => [
                 'class' => ManyToManyField::className(),
