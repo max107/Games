@@ -14,7 +14,8 @@
     <script type="text/javascript">
         $(function() {
             $("#msg").webchat({
-                username: {% if user.isGuest %}null{% else %}'{{ user.username }}'{% endif %}
+                username: {% if user.isGuest %}null{% else %}'{{ user.username }}'{% endif %},
+                socketUrl: 'ws://chat.pro-game.zone'
             });
         });
     </script>
