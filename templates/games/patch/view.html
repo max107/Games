@@ -2,4 +2,10 @@
 
 {% block content %}
     <h1>{{ model }}</h1>
+
+    {{ model.description }}
+
+    {% if model.file.value %}
+        <a href="{{ model.file.url }}">{{ t('Download', 'games') }}</a>
+    {% endif %}
 {% endblock %}

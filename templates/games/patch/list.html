@@ -3,9 +3,13 @@
 {% block content %}
     <h1>{{ t('Patches', 'games') }}</h1>
 
+    <ul class="no-bullet">
     {% for model in models %}
-        {{ model }}
+        <li>
+            <a href="{{ model.getAbsoluteUrl() }}">{{ model }}</a>
+        </li>
     {% endfor %}
+    </ul>
 
     {{ pager.render()|safe }}
 {% endblock %}
