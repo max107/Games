@@ -20,6 +20,11 @@ use Modules\Video\Admin\VideoAdmin as VideoBaseAdmin;
 
 class VideoAdmin extends VideoBaseAdmin
 {
+    public function getColumns()
+    {
+        return ['name', 'game', 'url'];
+    }
+
     /**
      * @return \Mindy\Orm\Model
      */
