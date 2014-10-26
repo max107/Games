@@ -26,8 +26,7 @@ class Video extends VideoBase
             'game' => [
                 'class' => ForeignField::className(),
                 'modelClass' => Game::className(),
-                'verboseName' => GamesModule::t('Game'),
-                'editable' => false
+                'verboseName' => GamesModule::t('Game')
             ]
         ]);
     }

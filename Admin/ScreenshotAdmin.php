@@ -15,6 +15,7 @@
 namespace Modules\Games\Admin;
 
 use Modules\Admin\Components\ModelAdmin;
+use Modules\Games\Forms\ScreenshotForm;
 use Modules\Games\Models\Screenshot;
 
 class ScreenshotAdmin extends ModelAdmin
@@ -25,6 +26,11 @@ class ScreenshotAdmin extends ModelAdmin
     public function getModel()
     {
         return new Screenshot;
+    }
+
+    public function getCreateForm()
+    {
+        return ScreenshotForm::className();
     }
 }
 
