@@ -16,8 +16,14 @@
         <dd{% if game_url == request.path %} class="active"{% endif %}><a href="{{ game_url }}">{{ t('Information', 'games') }}</a></dd>
         <dd{% if screenshot_url in request.path %} class="active"{% endif %}><a href="{{ screenshot_url }}">{{ t('Screenshots', 'games') }}</a></dd>
         <dd{% if video_url in request.path %} class="active"{% endif %}><a href="{{ video_url }}">{{ t('Video', 'games') }}</a></dd>
-        <dd{% if blog_url in request.path %} class="active"{% endif %}><a href="{{ blog_url }}">{{ t('Blog', 'games') }}</a></dd>
+        {% if game.posts.count() %}
+            <dd{% if blog_url in request.path %} class="active"{% endif %}><a href="{{ blog_url }}">{{ t('Blog', 'games') }}</a></dd>
+        {% endif %}
+        {% if game.mods.count() %}
         <dd{% if mod_url in request.path %} class="active"{% endif %}><a href="{{ mod_url }}">{{ t('Modifications', 'games') }}</a></dd>
+        {% endif %}
+        {% if game.patches.count() %}
         <dd{% if patch_url in request.path %} class="active"{% endif %}><a href="{{ patch_url }}">{{ t('Patches', 'games') }}</a></dd>
+        {% endif %}
     </dl>
 {% endblock %}
