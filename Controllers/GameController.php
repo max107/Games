@@ -43,6 +43,23 @@ class GameController extends CoreController
         ]);
     }
 
+    public function actionList()
+    {
+        $urlManager = Mindy::app()->urlManager;
+        $this->setCanonical($urlManager->reverse('games.index'));
+        $this->addTitle(GamesModule::t('Games'));
+        $this->setBreadcrumbs([
+            ['name' => GamesModule::t('Games'), 'url' => $urlManager->reverse('games.index')],
+        ]);
+
+        $qs = Game::objects()->order(['-created_at']);
+        $pager = new Pagination($qs);
+        echo $this->render('games/game/list.html', [
+            'models' => $pager->paginate(),
+            'pager' => $pager
+        ]);
+    }
+
     public function actionView($slug)
     {
         $game = Game::objects()->filter(['slug' => $slug])->get();

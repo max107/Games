@@ -5,6 +5,10 @@ return [
         'name' => 'index',
         'callback' => '\Modules\Games\Controllers\GameController:index'
     ],
+    'list' => [
+        'name' => 'list',
+        'callback' => '\Modules\Games\Controllers\GameController:list'
+    ],
     'chat' => [
         'name' => 'chat',
         'callback' => '\Modules\Games\Controllers\ChatController:index'
