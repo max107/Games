@@ -6,7 +6,14 @@
     <ul class="no-bullet">
     {% for model in models %}
         <li>
-            <a href="{{ model.getAbsoluteUrl() }}">{{ model }}</a>
+            <h4><a href="{{ model.getAbsoluteUrl() }}">{{ model }}</a></h4>
+            <p>{{ model.description|striptags|truncate(400) }}</p>
+            <ul class="list-panel">
+                <li>
+                    {{ t('Comments', 'comments') }} <a href="{{ child.getAbsoluteUrl() }}#comments">{{ model.comments.count() }}</a>
+                </li>
+            </ul>
+            <p><a class="button" href="{{ model.getAbsoluteUrl() }}">{{ t('Read more...', 'games') }}</a></p>
         </li>
     {% endfor %}
     </ul>

@@ -45,6 +45,11 @@ class Mod extends Model
                 'verboseName' => GamesModule::t('Game'),
                 'modelClass' => Game::className()
             ],
+            'comments' => [
+                'class' => HasManyField::className(),
+                'modelClass' => ModComment::className(),
+                'editable' => false,
+            ]
         ];
     }
 

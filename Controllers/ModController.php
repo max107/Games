@@ -81,9 +81,12 @@ class ModController extends CoreController
             ['name' => (string)$model, 'url' => $model->getAbsoluteUrl()]
         ]);
 
+        $pager = new Pagination($model->comments);
         echo $this->render("games/mod/view.html", [
             'game' => $game,
-            'model' => $model
+            'model' => $model,
+            'comments' => $pager->paginate(),
+            'pager' => $pager
         ]);
     }
 }

@@ -15,6 +15,7 @@
 namespace Modules\Games\Admin;
 
 use Modules\Admin\Components\ModelAdmin;
+use Modules\Games\Forms\ModForm;
 use Modules\Games\Models\Mod;
 
 class ModAdmin extends ModelAdmin
@@ -22,6 +23,11 @@ class ModAdmin extends ModelAdmin
     public function getColumns()
     {
         return ['name'];
+    }
+
+    public function getCreateForm()
+    {
+        return ModForm::className();
     }
 
     /**

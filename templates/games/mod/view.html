@@ -3,9 +3,13 @@
 {% block content %}
     <h1>{{ model }}</h1>
 
-    {{ model.description }}
+    {{ model.description|safe }}
 
     {% if model.file.value %}
-        <a href="{{ model.file.url }}">{{ t('Download', 'games') }}</a>
+        <p>&nbsp;</p>
+        <p><a href="{{ model.file.url }}" class="button">{{ t('Download', 'games') }}</a></p>
     {% endif %}
+
+    <h3>{{ t('Comments', 'comments') }}</h3>
+    {{ render_comments(request, "games/mod/_comments.html", model, model.comments)|safe }}
 {% endblock %}

@@ -80,6 +80,14 @@ return [
         'name' => 'mod_view',
         'callback' => '\Modules\Games\Controllers\ModController:view'
     ],
+    'game/{slug:[A-Za-z0-9-]+}/mods/{pk:\d+}/c/send' => [
+        'name' => 'mod_comment_send',
+        'callback' => '\Modules\Games\Controllers\ModCommentController:save',
+    ],
+    'game/{slug:[A-Za-z0-9-]+}/mods/{pk:\d+}/c/' => [
+        'name' => 'mod_comment_list',
+        'callback' => '\Modules\Games\Controllers\ModCommentController:view',
+    ],
 
     'game/{slug:[A-Za-z0-9-]+}/screenshot' => [
         'name' => 'screenshot_list',

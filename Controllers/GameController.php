@@ -23,6 +23,8 @@ use Modules\Games\Models\Post;
 
 class GameController extends CoreController
 {
+    public $pageSize = 12;
+
     public function actionIndex()
     {
         $urlManager = Mindy::app()->urlManager;
@@ -33,7 +35,9 @@ class GameController extends CoreController
         ]);
 
         $qs = Post::objects()->published();
-        $postsPager = new Pagination($qs);
+        $postsPager = new Pagination($qs, [
+            'pageSize' => $this->pageSize
+        ]);
 
         $qs = Game::objects()->order(['-created_at'])->limit(12)->offset(0);
         echo $this->render('games/game/index.html', [
@@ -53,7 +57,9 @@ class GameController extends CoreController
         ]);
 
         $qs = Game::objects()->order(['-created_at']);
-        $pager = new Pagination($qs);
+        $pager = new Pagination($qs, [
+            'pageSize' => $this->pageSize
+        ]);
         echo $this->render('games/game/list.html', [
             'models' => $pager->paginate(),
             'pager' => $pager
