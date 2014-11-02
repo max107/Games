@@ -3,20 +3,20 @@
 {% block content %}
     <h1>{{ model }}</h1>
 
-    <p>{{ model.description|safe }}</p>
+    <div>{{ model.description|safe }}</div>
     <p>&nbsp;</p>
 
-    <h2>{{ t('Games', 'games') }}</h2>
-    <ul class="games-list small-block-grid-2 medium-block-grid-3 large-block-grid-4">
-        {% for game in games %}
-            <li>
-                <a href="{{ game.getAbsoluteUrl() }}">
-                    <img class="th" src="{% if game.logo.value %}{{ game.logo.url_228x147 }}{% else %}http://placehold.it/228x147{% endif %}" alt="{{ game }}"/><br/>
-                    <span>{{ game }}</span>
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
-
-    {{ pager.render()|safe }}
+    {% if games|length > 0 %}
+        <h2>{{ t('Games', 'games') }}</h2>
+        <ul class="games-list small-block-grid-2 medium-block-grid-3 large-block-grid-4">
+            {% for game in games %}
+                <li>
+                    <a href="{{ game.getAbsoluteUrl() }}">
+                        <img class="th" src="{% if game.logo.value %}{{ game.logo.url_228x147 }}{% else %}http://placehold.it/228x147{% endif %}" alt="{{ game }}"/><br/>
+                        <span>{{ game }}</span>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 {% endblock %}
