@@ -3,10 +3,11 @@
 {% block content %}
     <h1>{{ t('Developers', 'games') }}</h1>
 
-    <ul class="no-bullet">
+    <ul class="developer-list">
         {% for model in models %}
             <li>
-                <a href="{{ model.getAbsoluteUrl() }}">{{ model }}</a>
+                <h4><a href="{{ model.getAbsoluteUrl() }}">{{ model }}</a></h4>
+                <p>{{ model.description|striptags|truncate(200) }}</p>
             </li>
         {% endfor %}
     </ul>

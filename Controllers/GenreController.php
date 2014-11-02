@@ -57,7 +57,9 @@ class GenreController extends CoreController
             ['name' => (string) $model, 'url' => $model->getAbsoluteUrl()]
         ]);
 
-        $pager = new Pagination($model->games);
+        $pager = new Pagination($model->games, [
+            'pageSize' => 12
+        ]);
         echo $this->render('games/genre/view.html', [
             'model' => $model,
             'games' => $pager->paginate(),
