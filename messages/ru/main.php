@@ -49,4 +49,6 @@ return array(
     'Message...' => 'Сообщение...',
     'Download' => 'Скачать',
     'Read more...' => 'Подробнее...',
+    'Create game' => 'Создать игру',
+    'Update game: {name}' => 'Редактирование игры: {name}',
 );
