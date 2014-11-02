@@ -20,6 +20,7 @@ use Modules\Core\Controllers\CoreController;
 use Modules\Games\GamesModule;
 use Modules\Games\Models\Game;
 use Modules\Games\Models\Post;
+use Modules\Pages\Models\Page;
 
 class GameController extends CoreController
 {
@@ -35,15 +36,18 @@ class GameController extends CoreController
         ]);
 
         $qs = Post::objects()->published();
-        $postsPager = new Pagination($qs, [
-            'pageSize' => $this->pageSize
-        ]);
+        $postsPager = new Pagination($qs);
+
+        $news = Page::objects()->filter(['pk' => 6])->get();
+        $newsPager = new Pagination($news->getChildrenQuerySet()->limit(12)->offset(0));
 
         $qs = Game::objects()->order(['-created_at'])->limit(12)->offset(0);
         echo $this->render('games/game/index.html', [
             'models' => $qs->all(),
             'posts' => $postsPager->paginate(),
-            'postsPager' => $postsPager
+            'postsPager' => $postsPager,
+            'news' => $newsPager->paginate(),
+            'newsPager' => $newsPager
         ]);
     }
 

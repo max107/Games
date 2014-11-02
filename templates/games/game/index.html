@@ -19,15 +19,43 @@
     {% endfor %}
     </ul>
 
-    <h2>{{ t('Last blog posts', 'games') }}</h2>
+    <hr/>
 
-    <ul class="no-bullet">
-    {% for post in posts %}
-        <li>
-            <a href="{{ post.getAbsoluteUrl() }}">{{ post }}</a>
-        </li>
-    {% endfor %}
-    </ul>
+    {% if posts|length > 0 %}
+        <div>
+            <h2>{{ t('Last blog posts', 'games') }}</h2>
+            <ul class="no-bullet">
+            {% for post in posts %}
+                <li>
+                    <h4><a href="{{ post.getAbsoluteUrl() }}">{{ post }}</a></h4>
+                    <p>{{ post.content_short }}</p>
+                    <p>&nbsp;</p>
+                    <p><a href="{{ new.getAbsoluteUrl() }}" class="link-button">{{ t('Read more...', 'pages') }}</a></p>
+                    <p>&nbsp;</p>
+                </li>
+            {% endfor %}
+            </ul>
+            {{ postsPager.render()|safe }}
+        </div>
+        <hr/>
+    {% endif %}
 
-    {{ postsPager.render()|safe }}
+    {% if news|length > 0 %}
+        <div>
+            <h2>{{ t('Last news', 'games') }}</h2>
+            <ul class="no-bullet">
+            {% for new in news %}
+                <li>
+                    <h4><a href="{{ new.getAbsoluteUrl() }}">{{ new }}</a></h4>
+                    <p>{{ new.content_short }}</p>
+                    <p>&nbsp;</p>
+                    <p><a href="{{ new.getAbsoluteUrl() }}" class="link-button">{{ t('Read more...', 'pages') }}</a></p>
+                    <p>&nbsp;</p>
+                </li>
+            {% endfor %}
+            </ul>
+            {{ newssPager.render()|safe }}
+        </div>
+        <hr/>
+    {% endif %}
 {% endblock %}

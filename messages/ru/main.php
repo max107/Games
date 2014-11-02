@@ -64,4 +64,5 @@ return array(
     'Create patch' => 'Добавить патч',
     'Update patch: {name}' => 'Редактирование патча: {name}',
     'Mods' => 'Модификации',
+    'Last news' => 'Последние новости'
 );

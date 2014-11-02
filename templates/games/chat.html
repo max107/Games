@@ -3,20 +3,5 @@
 {% block content %}
     <h1>{{ t('Chat', 'games') }}</h1>
 
-    <div id="log-container">
-        <div id="log"></div>
-
-        <form id="form">
-            <input type="text" id="msg" placeholder="{{ t("Message...", 'games') }}" />
-            <input type="submit" value="{{ t('Send', 'games') }}" class="button" />
-        </form>
-    </div>
-    <script type="text/javascript">
-        $(function() {
-            $("#msg").webchat({
-                username: {% if user.isGuest %}null{% else %}'{{ user.username }}'{% endif %},
-                socketUrl: 'ws://chat.pro-game.zone'
-            });
-        });
-    </script>
+    {% include "games/_chat.html" %}
 {% endblock %}

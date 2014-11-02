@@ -12,7 +12,7 @@
     {% url 'games.mod_list' game.slug as mod_url %}
     {% url 'games.patch_list' game.slug as patch_url %}
 
-    <dl class="tabs">
+    <dl class="tabs game">
         <dd{% if game_url == request.path %} class="active"{% endif %}><a href="{{ game_url }}">{{ t('Information', 'games') }}</a></dd>
         {% if game.screenshots.count() %}
         <dd{% if screenshot_url in request.path %} class="active"{% endif %}><a href="{{ screenshot_url }}">{{ t('Screenshots', 'games') }}</a></dd>

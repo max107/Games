@@ -10,6 +10,8 @@
         <p><a href="{{ model.file.url }}" class="button">{{ t('Download', 'games') }}</a></p>
     {% endif %}
 
-    <h3>{{ t('Comments', 'comments') }}</h3>
+    {% if not request.isAjax %}
+        <h4>{{ t('Comments', 'comments') }} ({{ model.comments.count() }})</h4>
+    {% endif %}
     {{ render_comments(request, "games/mod/_comments.html", model, model.comments)|safe }}
 {% endblock %}
