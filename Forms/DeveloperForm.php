@@ -9,7 +9,7 @@
  * @version 1.0
  * @company Studio107
  * @site http://studio107.ru
- * @date 01/11/14.11.2014 19:01
+ * @date 02/11/14.11.2014 13:15
  */
 
 namespace Modules\Games\Forms;
@@ -17,9 +17,9 @@ namespace Modules\Games\Forms;
 use Mindy\Form\Fields\CharField;
 use Mindy\Form\Fields\WysiwygField;
 use Mindy\Form\ModelForm;
-use Modules\Games\Models\Mod;
+use Modules\Games\Models\Developer;
 
-class ModForm extends ModelForm
+class DeveloperForm extends ModelForm
 {
     public function getFields()
     {
@@ -35,6 +35,6 @@ class ModForm extends ModelForm
 
     public function getModel()
     {
-        return new Mod;
+        return new Developer;
     }
 }

@@ -51,4 +51,6 @@ return array(
     'Read more...' => 'Подробнее...',
     'Create game' => 'Создать игру',
     'Update game: {name}' => 'Редактирование игры: {name}',
+    'Create developer' => 'Создать разработчика',
+    'Update developer: {name}' => 'Редактирование разработчика: {name}'
 );

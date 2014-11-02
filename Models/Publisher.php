@@ -32,6 +32,7 @@ class Publisher extends Model
             ],
             'slug' => [
                 'class' => SlugField::className(),
+                'verboseName' => GamesModule::t('Slug'),
                 'unique' => true
             ],
             'description' => [

@@ -15,6 +15,7 @@
 namespace Modules\Games\Admin;
 
 use Modules\Admin\Components\ModelAdmin;
+use Modules\Games\Forms\PublisherForm;
 use Modules\Games\Models\Publisher;
 
 class PublisherAdmin extends ModelAdmin
@@ -22,6 +23,11 @@ class PublisherAdmin extends ModelAdmin
     public function getColumns()
     {
         return ['name'];
+    }
+
+    public function getCreateForm()
+    {
+        return PublisherForm::className();
     }
 
     /**

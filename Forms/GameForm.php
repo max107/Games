@@ -1,9 +1,9 @@
 <?php
 /**
- * 
+ *
  *
  * All rights reserved.
- * 
+ *
  * @author Falaleev Maxim
  * @email max@studio107.ru
  * @version 1.0
@@ -14,12 +14,26 @@
 
 namespace Modules\Games\Forms;
 
+use Mindy\Form\Fields\CharField;
+use Mindy\Form\Fields\WysiwygField;
 use Mindy\Form\ModelForm;
 use Modules\Games\Models\Game;
 use Modules\Meta\Forms\MetaInlineForm;
 
 class GameForm extends ModelForm
 {
+    public function getFields()
+    {
+        return [
+            'name' => [
+                'class' => CharField::className(),
+            ],
+            'description' => [
+                'class' => WysiwygField::className(),
+            ],
+        ];
+    }
+
     public function getModel()
     {
         return new Game;

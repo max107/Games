@@ -15,6 +15,7 @@
 namespace Modules\Games\Admin;
 
 use Modules\Admin\Components\ModelAdmin;
+use Modules\Games\Forms\DeveloperForm;
 use Modules\Games\Models\Developer;
 
 class DeveloperAdmin extends ModelAdmin
@@ -22,6 +23,11 @@ class DeveloperAdmin extends ModelAdmin
     public function getColumns()
     {
         return ['name'];
+    }
+
+    public function getCreateForm()
+    {
+        return DeveloperForm::className();
     }
 
     /**
