@@ -59,7 +59,7 @@ class PostForm extends ModelForm
     public function getInlines()
     {
         return [
-            'meta' => MetaInlineForm::className()
+            ['meta' => MetaInlineForm::className()]
         ];
     }
 

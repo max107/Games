@@ -15,6 +15,7 @@
 namespace Modules\Games\Admin;
 
 use Modules\Admin\Components\ModelAdmin;
+use Modules\Games\Forms\GenreForm;
 use Modules\Games\Models\Genre;
 
 class GenreAdmin extends ModelAdmin
@@ -22,6 +23,11 @@ class GenreAdmin extends ModelAdmin
     public function getColumns()
     {
         return ['name'];
+    }
+
+    public function getCreateForm()
+    {
+        return GenreForm::className();
     }
 
     /**

@@ -3,7 +3,7 @@
 namespace Modules\Games\Admin;
 
 use Modules\Admin\Components\ModelAdmin;
-use Modules\Games\Forms\PostAdminForm;
+use Modules\Games\Forms\PostForm;
 use Modules\Games\Models\Post;
 use Modules\Games\GamesModule;
 
@@ -21,7 +21,7 @@ class PostAdmin extends ModelAdmin
 
     public function getCreateForm()
     {
-        return PostAdminForm::className();
+        return PostForm::className();
     }
 
     public function getModel()

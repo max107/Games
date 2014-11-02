@@ -52,5 +52,16 @@ return array(
     'Create game' => 'Создать игру',
     'Update game: {name}' => 'Редактирование игры: {name}',
     'Create developer' => 'Создать разработчика',
-    'Update developer: {name}' => 'Редактирование разработчика: {name}'
+    'Update developer: {name}' => 'Редактирование разработчика: {name}',
+    'Create platform' => 'Создать платформу',
+    'Update platform: {name}' => 'Редактирование платформы: {name}',
+    'Create publisher' => 'Добавить издателя',
+    'Update publisher: {name}' => 'Редактирование издателя: {name}',
+    'Create genre' => 'Добавить жанр',
+    'Update genre: {name}' => 'Редактирование жанра: {name}',
+    'Create mod' => 'Добавить модификацию',
+    'Update mod: {name}' => 'Редактирование модификации: {name}',
+    'Create patch' => 'Добавить патч',
+    'Update patch: {name}' => 'Редактирование патча: {name}',
+    'Mods' => 'Модификации',
 );

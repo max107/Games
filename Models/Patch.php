@@ -46,4 +46,11 @@ class Patch extends Model
             ],
         ];
     }
+
+    public function getAdminNames($instance = null)
+    {
+        $names = parent::getAdminNames($instance);
+        $names[0] = $this->getModule()->t('Patches');
+        return $names;
+    }
 }
