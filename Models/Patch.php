@@ -15,6 +15,7 @@
 namespace Modules\Games\Models;
 
 use Mindy\Orm\Fields\CharField;
+use Mindy\Orm\Fields\DateTimeField;
 use Mindy\Orm\Fields\FileField;
 use Mindy\Orm\Fields\ForeignField;
 use Mindy\Orm\Fields\TextField;
@@ -43,6 +44,16 @@ class Patch extends Model
                 'class' => ForeignField::className(),
                 'verboseName' => GamesModule::t('Game'),
                 'modelClass' => Game::className()
+            ],
+            'created_at' => [
+                'class' => DateTimeField::className(),
+                'autoNowAdd' => true,
+                'editable' => false
+            ],
+            'updated_at' => [
+                'class' => DateTimeField::className(),
+                'autoNow' => true,
+                'editable' => false
             ],
         ];
     }
